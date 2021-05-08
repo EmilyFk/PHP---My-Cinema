@@ -25,3 +25,9 @@
 .card-signInUp {
   margin: 0 120px;
 }
+
+.errors {
+  color: maroon;
+  text-decoration-color: darkgreen;
+  text-underline: darkmagenta;
+}

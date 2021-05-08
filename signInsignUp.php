@@ -24,7 +24,7 @@ require "./header.php";
 
             <div class="card ">
                 <div class="form-signin text-center card-signInUp"  >   <!--vriskei tus xaraktires pu den tha prepe na boun sti vasi k tus metatrepei-->
-                    <form  action="checkLogin.php" method="post">
+                    <form action="checkLogin.php" method="post">
                     <br/>
                     <h1 class="h3 mb-3 fw-normal">Sign In</h1>
                     <span>Αν έχεις ήδη λογαριασμό, συνδέσου εδώ:</span>
@@ -33,11 +33,12 @@ require "./header.php";
 
                     <label for="inputEmail1" class="form-label">Email*</label>
                     <input type="email" class="form-control" placeholder="Insert your email" id="inputEmail1" name="email" value="<?php echo (isset($_SESSION["email"])) ? $_SESSION["email"] : ""; ?>" required>
-                        <span class="error"><?php echo (isset($_SESSION["emailErr"])) ? $_SESSION["emailErr"] : ""; ?></span>
+                        <span class="error"><?php echo (isset($_SESSION["loginErr"])) ? $_SESSION["loginErr"] : ""; ?></span>
                     <br/>
                     <label for="inputPassword1" class="form-label">Password*</label>
-                    <input type="password" class="form-control" placeholder="Insert your password" id="inputPassword1" name="password" value="<?php echo (isset($_SESSION["password"])) ? $_SESSION["password"] : ""; ?>" class="<?php echo $_SESSION["false"];?>" required>
-                    <span class="error"><?php echo (isset($_SESSION["passwordErr"])) ? $_SESSION["passwordErr"] : ""; ?></span>
+                    <input type="password" class="form-control" placeholder="Insert your password" id="inputPassword1" name="password"
+                           class="<?php echo $_SESSION["false"];?>" required>
+                    <span class="error"><?php echo (isset($_SESSION["loginErr"])) ? $_SESSION["loginErr"] : ""; ?></span>
                     <br/><br/>
                         <p><span class="error">*These fields are required.</span></p><br/>
                         <hr class="mb-3">
@@ -81,7 +82,6 @@ require "./header.php";
 //                    }
 //
 //                ?>
-                <?php echo (isset($_GET["error"])) ? $_GET["error"] : ""; ?>
                 <div class="form-signin card-signInUp text-center" >  <!--vriskei tus xaraktires pu den tha prepe na boun sti vasi k tus metatrepei-->
                     <form action="checkRegistration.php" method="post" >
                     <br/>
@@ -110,9 +110,12 @@ require "./header.php";
                     <span class="error"><?php echo (isset($_SESSION["passwordErr"])) ? $_SESSION["passwordErr"] : ""; ?></span>
                     <br/>
 <!--                    <p>I'm not a robot recaptcha</p>-->
-<!--                    <a class="btn btn-outline-secondary" href="submit.php" role="button">Submit</a>-->
-                        <br/><br/>
+<!--                    <a class="btn btn-outline-secondary" href="submit.php" type="button">Submit</a>-->
+
+                        <p class="text-danger"><?php echo (isset($_GET["error"])) ? $_GET["error"] : ""; ?></p>
+
                         <p><span class="error">*These fields are required.</span></p><br/>
+
                         <hr class="mb-3">
                     <button class="btn btn-outline-secondary" type="submit" name="submit">Register</button><br/><br/>
                     </form>

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["firstnameErr"]=  $firstnameErr;
             header("Location: signInsignUp.php?error=invalidfirstname&firstname=".$firstnameErr);
             exit();
-        }else{$_SESSION["firstname"]=  $firstname;}  //NEW!!!
+        }else{$_SESSION["firstname"]=  $firstname;}
     }
     if (empty($_POST["lastname"])) {
         $lastnameErr = "Last name is required";
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["lastnameErr"]=  $lastnameErr;
             header("Location: signInsignUp.php?error=invalidlastname&lastname=".$lastnameErr);
             exit();
-        }else{$_SESSION["lastname"]=  $lastname;}  //NEW!!!
+        }else{$_SESSION["lastname"]=  $lastname;}
     }
 
     if (empty($_POST["telephone"])) {
@@ -73,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["telephoneErr"]=  $telephoneErr;
             header("Location: signInsignUp.php?error=invalidtelephone&telephone=".$telephoneErr);
             exit();
-        }else{$_SESSION["telephone"]=  $telephone;}  //NEW!!!
+        }else{$_SESSION["telephone"]=  $telephone;}
     }
 
     if (empty($_POST["email"])) {
@@ -84,14 +84,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else {
         $email = test_input($_POST["email"]);
-//        $_SESSION["email"]=  $email;
+
         // check if e-mail address is well-formed
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format";
             $_SESSION["emailErr"]=  $emailErr;
             header("Location: signInsignUp.php?error=invalidemail&email=".$emailErr);
             exit();
-        } else{$_SESSION["email"]=  $email;}  //NEW!!!
+        } else{$_SESSION["email"]=  $email;}
     }
 
     if (empty($_POST["password"])) {
@@ -115,7 +115,7 @@ function test_input($data) {
     return $data;
 }
 
-// prepare statements
+    // prepare statements
 
     $sql = "SELECT * FROM users WHERE email = ?";
     $stmt = mysqli_stmt_init($conn);
@@ -128,7 +128,7 @@ function test_input($data) {
         mysqli_stmt_store_result($stmt);
         $rowCount = mysqli_stmt_num_rows($stmt);
 
-//checking email if already exists
+        //checking email if already exists
         if ($rowCount > 0){
             header("Location: signInsignUp.php?error=emailtaken");
             exit();
@@ -156,10 +156,10 @@ function test_input($data) {
         }
     }
     //close the statement and connection that we had created
-mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt);
     mysqli_close($conn);
-//}
-//errors( $firstnameErr, $lastnameErr, $telephoneErr, $emailErr, $passwordErr );
+
+
 //header("Location: signInsignUp.php");
 
 
