@@ -1,17 +1,17 @@
 <!--database connection-->
 <?php
-//session_start();
+session_start();
+//params to connect to a database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "mycinema";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+//connection to database
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error); }
-//$sql = "SELECT * FROM ";
-//$result = $conn->query($sql);
-//$conn->close();
+if (!$conn){
+  die("Database connection failed! ");
+}
 
 ?>

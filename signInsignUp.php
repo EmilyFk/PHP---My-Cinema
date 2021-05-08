@@ -2,7 +2,9 @@
 Table of contents:
      A. Login (sign in)
      B. Registration (sign up)-->
-
+<?php
+require_once 'db.php';
+?>
 <!doctype html>
 <html lang="en">
 <?php
@@ -63,6 +65,23 @@ require "./header.php";
 
 
             <div class="card ">
+
+<!--                --><?php
+//                $sql = "SELECT * FROM users";
+//                $result = mysqli_query($conn, $sql);
+//                $rowCount = mysqli_num_rows($result);
+//
+//                if($rowCount > 0){
+//                    while ($row = mysqli_fetch_assoc($result)){
+//                        echo $row['email']."<br>";
+//                    }
+//                }
+//                    else {
+//                        echo "No results found.";
+//                    }
+//
+//                ?>
+                <?php echo (isset($_GET["error"])) ? $_GET["error"] : ""; ?>
                 <div class="form-signin card-signInUp text-center" >  <!--vriskei tus xaraktires pu den tha prepe na boun sti vasi k tus metatrepei-->
                     <form action="checkRegistration.php" method="post" >
                     <br/>
@@ -87,15 +106,15 @@ require "./header.php";
                     <span class="error"> <?php echo (isset($_SESSION["emailErr"])) ? $_SESSION["emailErr"] : ""; ?></span>
                     <br/>
                     <label for="inputPassword4" class="form-label">Password*</label>
-                    <input type="password" class="form-control" placeholder="Insert your password" id="inputPassword" name="password" value="<?php echo (isset($_SESSION["pass"])) ? $_SESSION["pass"] : ""; ?>" class="<?php echo $_SESSION["false"];?>" required>
-                    <span class="error"><?php echo (isset($_SESSION["passErr"])) ? $_SESSION["passErr"] : ""; ?></span>
+                    <input type="password" class="form-control" placeholder="Insert your password" id="inputPassword" name="password" class="<?php echo $_SESSION["false"];?>" required>
+                    <span class="error"><?php echo (isset($_SESSION["passwordErr"])) ? $_SESSION["passwordErr"] : ""; ?></span>
                     <br/>
 <!--                    <p>I'm not a robot recaptcha</p>-->
 <!--                    <a class="btn btn-outline-secondary" href="submit.php" role="button">Submit</a>-->
                         <br/><br/>
                         <p><span class="error">*These fields are required.</span></p><br/>
                         <hr class="mb-3">
-                    <button class="btn btn-outline-secondary" type="submit">Submit</button><br/><br/>
+                    <button class="btn btn-outline-secondary" type="submit" name="submit">Register</button><br/><br/>
                     </form>
                 </div>
             </div>

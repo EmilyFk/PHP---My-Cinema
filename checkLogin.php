@@ -10,7 +10,7 @@ if (isset($_POST['email']) && isset($_POST['password']))
     }
 
 }else{
-    header("Location: signInsignUp.php");
+    header("Location: ../signInsignUp.php?error=accessforbidden");
 }
 ?>
 
