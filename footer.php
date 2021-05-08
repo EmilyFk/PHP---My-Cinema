@@ -1,3 +1,11 @@
+<!-- FOOTER -->
 <div id="footer">
-    2021 Copyrights @MyCinema.com
+    <br/>
+    <br/>
+    <br/>
+    <?php
+   echo " <h6 class=\"text-center\"><em>&copy; " . date("Y") . "  My Cinema Direct - All rights reserved</em></h6> ";
+    ?>
 </div>
+<!-- Bootstrap core JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
