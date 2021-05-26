@@ -1,11 +1,5 @@
 <?php
 session_start();
-//$servername = "localhost";
-//@username = "root";
-//@password = "";
-//@dbname = "mycinema";
-//@conn = new mysqli($servername, $username, $password, $dbname);
-
 ?>
 
 <!doctype html>
@@ -17,32 +11,68 @@ require "./head.php";
 <?php
 require "./header.php";
 ?>
-<main class="container">
-    <br/>
-    <div>Διαμόρφωση Αίθουσας</div>
-    <br/>
-    <form>
-        Τοποθεσία:<input type="text" name="roomname"<br/>
-        Καθίσματα Αίθουσας:
-        Γραμμές:<input type="number" name="r_rows"<br/>
-        Στήλες:<input type="number" name="r_cols"<br/>
-        <input type="submit" <br/>
-    </form>
-    <h4><mark>Επέλεξε Θέσεις:</mark></h4><br/><br/>
-    <?php
-    $sql = "INSERT INTO rooms (roomname, r_rows, r_cols) VALUES('".$_POST['roomname']."', '".$_POST['r_rows']."', '".$_POST['r_cols']."')";
-if ($conn->query($sql) === TRUE){
-    echo "<h4>Η νέα αίθουσα δημιουργήθηκε!</h4>";
-}else{
-    echo "Error: " .$sql . "<br>" . $conn->error;
-}
-$conn->close();
+<main class="container "><br/>
+    <h4><u><mark>Δημιουργήστε Αίθουσες!</mark></u></h4><br/>
+    <h6>   Ακολουθήστε τα βήματα που αναφέρονται:</h6><br/>
+    <div class="row gx-5">
+        <div class="col">
+            <div class="card card-cinema border-secondary mb-3">
+                <div class="card-header text-center"><h4> Δημιουργία Αίθουσας</h4></div>
+                <div class="card-body text-secondary text-center">
+                    <!--                    <h5 class="card-title">Secondary card title</h5>-->
+                    <p class="card-text"> <em>Επιλογές διαμόρφωσης:</em>  <br/>
 
-    ?>
-    Για καταχώρηση και πληρωμή πάτησε:
+                    <form action="verifymakedrooms.php" method="post">
+                        <u> Τοποθεσία:</u>  <input type="text" name="roomname"><br/><br/>
+                        <em>Καθίσματα Αίθουσας:</em>  <br/><br/>
 
-    <button type="button" class="btn btn-outline-info"><a href="homePage.php">Συνέχεια..</a></button>
-    <button type="button" class="btn btn-outline-secondary"><a href="buytickets.php">πίσω</a></button>
+                        <u> Γραμμές:</u> <input type="number" name="r_rows"><br/><br/>
+                        <u> Στήλες:</u> <input type="number" name="r_cols"><br/><br/><br/>
+                        <input type="submit" ><br/>
+                    </form>
+                    </p>
+               </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br/>
+
+</main>
+<!--        --><?php
+//        //session_start();
+//        //add database connection
+//        require 'db.php';
+//        $sql = "INSERT INTO rooms (roomname, r_rows, r_cols) VALUES('".$_POST['roomname']."', '".$_POST['r_rows']."', '".$_POST['r_cols']."')";
+//
+//
+//        if ($conn->query($sql) === TRUE){
+//            echo "<h4>Η νέα αίθουσα δημιουργήθηκε!</h4>";
+//        }else{
+//            echo "Error: " .$sql . "<br>" . $conn->error;
+//        }
+//        $conn->close();
+//
+//        ?>
+<?php
+//if (isset($_POST['submit'])) {
+//echo (isset($_GET["success"])) && ($_GET["success"]=="registered") ? "<div class=\"alert alert-success\" role=\"alert\">
+//                          Registration successful. Please LogIn now!</div>" : "";
+//?>
+
+
+
+
+
+
+<!--    --><?php
+
+//    ?>
+<!--    Για καταχώρηση και πληρωμή πάτησε:-->
+<!---->
+<!--    <button type="button" class="btn btn-outline-info"><a href="homePage.php">Συνέχεια..</a></button>-->
+
 
 
 </main>
