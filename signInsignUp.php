@@ -42,7 +42,8 @@ require "./header.php";
                     <br/><br/>
                         <p><span class="error">*These fields are required.</span></p><br/>
                         <hr class="mb-3">
-                    <button class="btn btn-outline-secondary" role="submit">Submit</button>
+<!--                    <button class="btn btn-outline-secondary" role="submit">Submit</button>-->
+                        <button class="btn btn-outline-secondary" type="submit" name="submit">Login</button><br/><br/>
 <!--                    <a class="btn btn-outline-secondary" href="submit.php" role="button">Submit</a>-->
                     <br/><br/>
                     <br/><br/>
@@ -115,7 +116,10 @@ require "./header.php";
                         <p class="text-danger"><?php echo (isset($_GET["error"])) ? $_GET["error"] : ""; ?></p>
 
                         <p><span class="error">*These fields are required.</span></p><br/>
-
+                        <?php
+                        echo (isset($_GET["success"])) && ($_GET["success"]=="registered") ? "<div class=\"alert alert-success\" role=\"alert\">
+                          Registration successful. Please LogIn now!</div>" : "";
+                        ?>
                         <hr class="mb-3">
                     <button class="btn btn-outline-secondary" type="submit" name="submit">Register</button><br/><br/>
                     </form>
@@ -124,7 +128,6 @@ require "./header.php";
             <?php
             var_dump($_POST);
             echo "<h2>Your Input:</h2>";
-            echo (isset($_SESSION["firstname"])) ? $_SESSION["firstname"] : "";
             echo "<br>";
             echo (isset($_SESSION["lastname"])) ? $_SESSION["lastname"] : "";
             echo "<br>";

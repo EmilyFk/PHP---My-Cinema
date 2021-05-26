@@ -1,14 +1,10 @@
 <?php
-//session_start();
-//sundesh vasis
-
+session_start();
 
 if (isset($_POST['submit'])){
     //add database connection
     require 'db.php';
-
 }
-
 ?>
 
 <?php
@@ -18,6 +14,14 @@ if (isset($_POST['submit'])){
 //kathorismos metavlitwn kai adeiasma timwn
 $false = $firstnameErr = $lastnameErr = $telephoneErr = $emailErr = $passwordErr = "";
 $firstname = $lastname= $telephone = $email = $password = "";
+
+//kalw etoimes functions wste oti erthei san argument na perasei apo diadikasia "katharsis"
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["firstname"])) {
@@ -107,13 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 }
-//kalw etoimes functions wste oti erthei san argument na perasei apo diadikasia "katharsis"
-function test_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
 
     // prepare statements
 
@@ -128,7 +125,7 @@ function test_input($data) {
         mysqli_stmt_store_result($stmt);
         $rowCount = mysqli_stmt_num_rows($stmt);
 
-        //checking email if already exists
+        //check if: email is taken
         if ($rowCount > 0){
             header("Location: signInsignUp.php?error=emailtaken");
             exit();
@@ -136,6 +133,7 @@ function test_input($data) {
         else{
             $sql = "INSERT INTO users (firstname, lastname, telephone, email, password) VALUES (?, ?, ?, ?, ?)";
             $stmt = mysqli_stmt_init($conn);
+            //check if: sql error
             if (!mysqli_stmt_prepare($stmt, $sql)){
                 header("Location: signInsignUp.php?error=sqlerror");
                 exit();
@@ -149,6 +147,7 @@ function test_input($data) {
                 mysqli_stmt_execute($stmt);
                 mysqli_stmt_store_result($stmt);
 //                die(var_dump($stmt));
+                session_destroy();
                 header("Location: signInsignUp.php?success=registered");
                 exit();
 

@@ -9,40 +9,16 @@ require "./head.php";
 require "./header.php";
 ?>
 
-<?php
-require "./header.php";
-?>
 <main class="container">
     <br/>
 
     <h4><mark>Καλωσόρισες !</mark></h4><br/><br/>
-<!--    <div class="row">-->
-<!--        <div class="col-sm-6">-->
-<!--            <div class="card border-light">-->
-<!--                <div class="form ">-->
-<!--                <div class="card-body">-->
-<!--                    <h5 class="card-title">Special title treatment</h5>-->
-<!--                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-<!---->
-<!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--                </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="col-sm-6">-->
-<!--            <div class="card">-->
-<!--                <div class="card-body">-->
-<!--                    <h5 class="card-title">Special title treatment</h5>-->
-<!--                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>-->
-<!--                    <a href="#" class="btn btn-primary">Go somewhere</a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-    Επέλεξε το επόμενο βήμα σου:
+<p class="card-text">Είσαι <?php echo $_SESSION['sessionRole']; ?> . Με όνομα: <?php echo $_SESSION['sessionFName']; ?> </p>
+
+    Πλοηγήσου στη σελίδα επιλέγοντας το επόμενο βήμα σου:<br/><br/>
 
     <button type="button" class="btn btn-outline-info"><a href="homePage.php">Αρχική Σελίδα</a></button>
-    <button type="button" class="btn btn-outline-secondary"><a href="buytickets.php">Κλείσε θέσεις</a> </button>
+    <button type="button" class="btn btn-outline-secondary"><a href="thebooking.php">Κλείσε θέσεις</a> </button>
 
 
 </main>

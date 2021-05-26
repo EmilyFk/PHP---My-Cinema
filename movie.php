@@ -9,7 +9,7 @@ require "./header.php";
 ?>
 <main class="container ">
     <br/>
-    <h4><u><mark>ΠΑΙΖΟΝΤΑΙ ΤΩΡΑ</mark></u></h4><br/><br/>
+    <h4><u><mark>THE MOVIE</mark></u></h4><br/><br/>
     <br/><br/>
 </main>
 <?php

@@ -1,6 +1,9 @@
 <!--database connection-->
 <?php
-session_start();
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 //params to connect to a database
 $servername = "localhost";
 $username = "root";

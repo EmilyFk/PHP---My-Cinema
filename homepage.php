@@ -9,7 +9,7 @@ require "./header.php";
 ?>
 <main class="container">
     <br/>
-    <h4><u><mark>Παίζονται ΤΩΡΑ:</mark></u></h4>
+    <h4><u><mark><a href="rightnow.php">Παίζονται ΤΩΡΑ:</a></mark></u></h4>
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -21,7 +21,7 @@ require "./header.php";
                 <img src="photos/photo1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h2>Ant-Man</h2>
-                    <p>Some representative placeholder content for the first slide.</p>
+                    <p>Πατήστε <a href="movie.php">εδώ</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -49,7 +49,7 @@ require "./header.php";
         </button>
     </div>
 <br/><br/>
-    <h4><u><mark>Προσεχώς:</mark></u></h4>
+    <h4><u><mark><a href="upcomming.php">Προσεχώς:</a></mark></u></h4>
 
     <div id="carouselExampleCaptions1" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
