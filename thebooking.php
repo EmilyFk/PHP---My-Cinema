@@ -7,7 +7,7 @@ require "./head.php";
 <?php
 require "./header.php";
 ?>
-<!--booking only for logged in people and check it:-->
+<!--booking mono gia logged in users:-->
 <?php
 if (!isset($_SESSION['loggedIn'])){
     header("Location: bookingWithoutLogin.php");
@@ -18,28 +18,33 @@ require 'db.php';
 
 
     $sql = "SELECT * FROM rooms";
-    //arxikopoiw meatvlites
+    //arxikopoiw metavlites
     $sql1 = "";
     $sql2 = "";
     $sql3 = "";
     $room_seats = 0;
     $room_cols = 0;
 
+
+    //kanw select stus pinakes pu xreiazomai kai dinw tis times tus stis metavlites
     if (isset($_GET['room_id'])){
         $sql1 ="SELECT * FROM screening
                 INNER JOIN movies ON movies.movie_id=screening.movie_id
                 WHERE screening_id = " . $_GET['room_id'];
     }
     if (isset($_GET['movie_id'])){
-        $sql2 ="SELECT datetime FROM screening WHERE movie_id =  " . $_GET['movie_id'];
+        $sql2 ="SELECT * FROM screening WHERE movie_id = " . $_GET['movie_id'];
     }
     if (isset($_GET['screening_id'])){
        $sql3 ="SELECT * FROM rooms WHERE room_id =  " . $_GET['room_id'];
     }
+    //
     $result = $conn->query($sql);
     $result1 = $sql1 !== "" ? $conn->query($sql1) : "";
     $result2 = $sql2 !== "" ?$conn->query($sql2) : "";
-    $result3 = $sql3 !== "" ?$conn->query($sql3) : ""; //fernei 1 room me ta cl k rows
+    $result3 = $sql3 !== "" ?$conn->query($sql3) : ""; // edw fernei 1 room me ta cols k rows tu
+
+
 }
 ?>
 
@@ -51,13 +56,22 @@ require 'db.php';
         <mark>Κράτηση Εισητηρίων</mark>
     </h4>
     <br/><br/>
-    <form action="thebooking.php" method="GET">
+    <form action="<?php
+    if (isset($_GET['room_id']) && isset($_GET['movie_id']) && isset($_GET['screening_id'])){
+        echo "takeseats.php";
+    }
+    else {
+        echo "thebooking.php";
+    }
+    ?>" method="GET">
         <div class="form-group mb-3 card-signInUp">
+
+<!--an o user einai admin eisagei to email tu customer gia na kanei booking gia ekeinon-->
 
 <!--dropdown menu epiloghs room-->
             <label>Επιλέξτε αίθουσα(τοποθεσία):</label>
             <select name="room_id" class="form-select form-select-sm " aria-label=".form-select-sm example">
-                <option selected>Open this select menu</option>
+                <option value="" disabled>Select Location</option>
                 <?php
                 while($rows = $result->fetch_assoc()) {
                     $room_name = $rows['roomname'];
@@ -74,14 +88,15 @@ require 'db.php';
             if (isset($_GET['room_id'])){
                 echo "<label>Επιλέξτε ταινία:</label>
                      <select name=\"movie_id\" class=\"form-select form-select-sm \" aria-label=\".form-select-sm example\" >
-                     <option selected>Open this select menu</option> ";
+                     <option value='' disabled>Select Movie</option> ";
                     while($rows = $result1->fetch_assoc()) {
                         $movie_name = $rows['moviename'];
                         $movie_id = $rows['movie_id'];
+
                         $is_selected = (isset($_GET['movie_id']) && $_GET['movie_id'] == $movie_id) ? "selected" : "";
                         echo "<option value=\"$movie_id\" $is_selected>$movie_name</option>";
                      }
-                     echo "</select><br/><br/>";
+                     echo "</select>";
             }
             ?>
             <br/><br/>
@@ -89,12 +104,15 @@ require 'db.php';
             <?php
             if (isset($_GET['movie_id'])){
                 echo "<label>Επιλέξτε προβολή:</label>
-                     <select name=\"movies\" class=\"form-select form-select-sm \" aria-label=\".form-select-sm example\" >
-                     <option selected>Open this select menu</option> ";
+                     <select name=\"screening_id\" class=\"form-select form-select-sm \" aria-label=\".form-select-sm example\" >
+                     <option value='' disabled>Select Screening</option> ";
                 while($rows = $result2->fetch_assoc()) {
                     $datetime = $rows['datetime'];
                     $screening_id = $rows['screening_id'];
-                    echo "<option value=\"$screening_id\">$datetime</option>";
+
+                    $is_selected = (isset($_GET['screening_id']) && $_GET['screening_id'] == $screening_id) ? "selected" : "";
+                    echo "<option value=\"$screening_id\" $is_selected>$datetime</option>";
+
                 }
                 echo "</select><br/><br/>";
             }
@@ -102,31 +120,18 @@ require 'db.php';
             ?>
 
             <a class="btn btn-outline-secondary" href="thebooking.php">Reset</a>
-            <button type="submit" class="btn btn-outline-info">Συνέχεια..</a></button>
+            <?php
+            if (isset($_GET['room_id']) && isset($_GET['movie_id']) && isset($_GET['screening_id'])){
+                echo "<button type=\"submit\" class=\"btn btn-success\">Επιλογή θέσεων..</a></button>";
+            }
+            else {
+                echo "<button type=\"submit\" class=\"btn btn-outline-info\">Συνέχεια..</a></button>";
+            }
+            ?>
+
 
 
             <!--        <table align="center" border="3" cellpadding="5" cellspacing="0" >-->
-<!--            --><?php
-//            $sql = "SELECT * FROM movies";
-//            $result = $conn->query($sql);
-//            if ($result->num_rows > 0) {
-//                echo "Select movie:<select name=movies>";
-//                while ($row = $result->fetch_assoc()) {
-//                    echo "<option value=" . $row["movie_id"] . ">" . $row["moviename"] . "</option>";
-//                }
-//                echo "</select>";
-//                echo "<br>Select No:<select name=persons><option value=1>1</option><option value=2>2</option><option value=3>3</option><option value=4>4</option></select>";
-//                echo "<div class=\"row justify-content-end\"><div class=\"col-4\">
-//            <br/>   <button type=\"submit\" class=\"btn btn-outline-info\">Συνέχεια..</a></button>
-//
-//        </div></div>";
-//                "<input type=submit>";
-//            } else {
-//                echo "O results";
-//            }
-//            $conn->close();
-//
-//            ?>
             <!--        </table> -->
             <br/><br/>
 

@@ -45,6 +45,7 @@ if (isset($_POST['submit'])) {
                 } else {
                     session_start();
                     $_SESSION['sessionId'] = $row['id'];
+                    $_SESSION['sessionUserId'] = $row['user_id'];
                     $_SESSION['sessionFName'] = $row['firstname'];
                     $_SESSION['sessionLName'] = $row['lastname'];
                     $_SESSION['sessionRole'] = $row['role'];
